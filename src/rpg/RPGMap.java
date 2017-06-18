@@ -6,11 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;  
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Scanner;
-import jlibs.core.lang.Ansi;
 
 public class RPGMap {
 
@@ -24,9 +23,13 @@ public class RPGMap {
     private static String[][][] fmap = new String[8][8][50];
 
     public static void main(String[] args) throws UnsupportedEncodingException, IOException {
-        //RPGMap m = new RPGMap();
-        
-
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("test.csv"), "utf-8"))) {
+            writer.write(px + "x");
+            writer.write(py + "y");
+            writer.write(mapId + "mId");
+        }
+        RPGMap m = new RPGMap();
     }
 
     public RPGMap() throws IOException {
@@ -50,7 +53,6 @@ public class RPGMap {
 
     public static void setup(String ps, String ms, String wall) throws UnsupportedEncodingException, IOException {
         //fmap[0] = map;
-
         fmap[1] = new String[][]{
             {"O", "O", "O", "O", "O", "O", "O", "O"},
             {"O", "|", "O", "O", "O", "O", "|", "O"},
